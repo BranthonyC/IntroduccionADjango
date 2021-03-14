@@ -1,31 +1,33 @@
+{% extends "bookstore/_base.html" %}
+<!--load static-->
 {% load static %}
 <!--begin block content-->
-{% block content %}
-
+{% block content %} {% for book in books %}
+<!--begin book-->
 <div class="col-md-4">
   <div class="card card-product card-plain">
     <div class="card-header card-header-image">
-      <a href="#pablo">
-        <img src="../assets/img/examples/gucci.jpg" alt="" />
+      <a href="{{book.get_absolute_url}}">
+        <img src="{{book.picture_url}}" alt="" />
       </a>
     </div>
     <div class="card-body text-center">
       <h4 class="card-title">
-        <a href="#pablo">Gucci</a>
+        <a href="#pablo">{{book.name}}</a>
       </h4>
-      <p class="card-description">
-        The structured shoulders and sleek detailing ensure a sharp silhouette.
-        Team it with a silk pocket square and leather loafers.
-      </p>
+      <p class="card-description">{{book.description}}</p>
     </div>
     <div class="card-footer">
       <div class="price-container">
-        <span class="price price-old"> €1,430</span>
+        <span class="price"> Q{{book.price}}</span>
       </div>
       <div class="stats ml-auto">
-        <a href="#" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'book_delete' pk=book.id %}" class="btn btn-danger"
+          >Eliminar</a
+        >
       </div>
     </div>
   </div>
 </div>
-{% endblock content %}
+<!--end book-->
+{% endfor %} {% endblock content %}

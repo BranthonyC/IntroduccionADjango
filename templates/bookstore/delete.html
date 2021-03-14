@@ -1,0 +1,21 @@
+{% extends "bookstore/_base.html" %} {% load static %}
+<!--begin block content-->
+{% block content %}
+
+<div class="col">
+  <div class="card card-product card-plain">
+    <div class="card-header card-header-image"></div>
+    <div class="card-body text-center">
+      <h4 class="card-title">
+        <a href="#pablo">{{book.name}}</a>
+      </h4>
+    </div>
+    <div class="card-footer">
+      <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm" class="btn btn-danger" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
